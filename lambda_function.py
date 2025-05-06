@@ -23,8 +23,6 @@ def handler(event, context):
         timeout=event.get('timeout'),
         hook=[],
     )
-    print(suite)
-    print(errors)
 
     if errors:
         print(errors)
