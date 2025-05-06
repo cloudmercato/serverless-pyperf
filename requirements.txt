@@ -1,0 +1,3 @@
+pyperf
+pyperformance
+https://github.com/cloudmercato/cb-client/archive/refs/heads/master.zip
