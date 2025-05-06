@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import unittest
 from serverless_pyperf import run
 

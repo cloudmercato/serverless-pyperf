@@ -1,3 +1,3 @@
 pyperf
 pyperformance
-cb-client @ git+https://github.com/cloudmercato/cb-client@master
+cb-client @ https://github.com/cloudmercato/cb-client/archive/refs/heads/master.zip

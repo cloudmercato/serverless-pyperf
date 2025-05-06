@@ -1,11 +1,7 @@
-import json
-from io import StringIO
-
-from serverless_pyperf import run
-from cb_client.wringers import PyPerformanceWringer
+from serverless_pyperf import run, mercato
 
 
-def lambda_handler(event, context):
+def handler(event, context):
     benchmark_names = [b.name for b in run.BENCHMARKS]
     if event.get('benchmarks'):
         benchmark_names = [
@@ -27,15 +23,15 @@ def lambda_handler(event, context):
         timeout=event.get('timeout'),
         hook=[],
     )
+    print(suite)
+    print(errors)
 
     if errors:
         print(errors)
+    mercato.upload(suite, errors)
 
-    result_json = json.dumps(run.parse_results(suite, errors))
-
-    result_fd = StringIO(result_json)
-    wringer = PyPerformanceWringer(input_=result_fd)
-    wringer.run()
+    results = run.parse_results(suite, errors)
+    return results
 
 
 if __name__ == '__main__':
@@ -43,4 +39,4 @@ if __name__ == '__main__':
         'benchmarks': ['argparse'],
     }
     context = {}
-    lambda_handler(event, context)
+    handler(event, context)
