@@ -15,3 +15,9 @@ run_gc_run_function:
 
 fire_gc_run_function:
 	curl "http://localhost:8080" -H "Content-Type:application/json" -d '{"benchmarks": ["2to3"]}'
+
+build_oracle_function:
+	fn build oracle-functions
+
+run_oracle_function:
+	fn start oracle-functions
