@@ -1,0 +1,3 @@
+chardet
+scw-serverless
+streaming_form_data

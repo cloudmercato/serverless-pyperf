@@ -21,3 +21,9 @@ build_oracle_function:
 
 run_oracle_function:
 	fn start oracle-functions
+
+run_scw_function:
+	python scw/app.py
+
+fire_scw_function:
+	curl "http://localhost:8080/" -d '{"benchmarks": ["2to3"]}'
