@@ -10,3 +10,4 @@ build
 .coverage
 auth.yml
 .gitlab-ci-local/
+node_modules
