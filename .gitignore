@@ -11,3 +11,5 @@ build
 auth.yml
 .gitlab-ci-local/
 node_modules
+../aws-lambda/package.zip
+../aws-lambda/package

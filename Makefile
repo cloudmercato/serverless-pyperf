@@ -7,6 +7,9 @@ build_aws_lambda:
 run_aws_lambda:
 	docker run -p 9000:8080 pyperf-lambda
 
+package_aws_lambda:
+	cd aws-lambda && ./make_zip.sh
+
 fire_aws_lambda:
 	curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"benchmarks": ["2to3"]}'
 
@@ -27,3 +30,7 @@ run_scw_function:
 
 fire_scw_function:
 	curl "http://localhost:8080/" -d '{"benchmarks": ["2to3"]}'
+
+push_azure_function:
+	cd azure-functions && \
+		az functionapp create --resource-group default-eastus --consumption-plan-location eastus --runtime python --runtime-version 3.12 --functions-version 4 --name pyperf --storage-account osbeastussl --os-type Linux
