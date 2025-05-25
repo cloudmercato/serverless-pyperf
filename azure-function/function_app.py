@@ -1,13 +1,17 @@
+import os
 import json
 import azure.functions as func
 from serverless_pyperf import run, mercato
+
+os.chdir('/tmp/');
 
 app = func.FunctionApp()
 
 
 @app.route(route="pyperf", auth_level=func.AuthLevel.ANONYMOUS)
-def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
-    options = req.get_json()
+def pyperf(req: func.HttpRequest) -> func.HttpResponse:
+    options = json.loads(req.get_body())
+    print(options)
     benchmark_names = [b.name for b in run.BENCHMARKS]
     if options.get('benchmarks'):
         benchmark_names = [
@@ -28,6 +32,7 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
         min_time=options.get('min_time'),
         timeout=options.get('timeout'),
         hook=[],
+        unique_venvs=options.get('unique_venvs', False)
     )
 
     if errors:

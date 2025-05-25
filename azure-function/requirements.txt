@@ -3,3 +3,4 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions
+https://github.com/cloudmercato/serverless-pyperf/archive/refs/heads/main.zip
