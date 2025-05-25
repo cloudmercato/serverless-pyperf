@@ -20,6 +20,7 @@ def run(
     min_time=None,
     timeout=None,
     hook=[],
+    unique_venvs=False,
 ):
     benchmarks = [b for b in BENCHMARKS if b.name in benchmark_names]
     options = argparse.Namespace(
@@ -34,6 +35,7 @@ def run(
         min_time=min_time,
         timeout=timeout,
         hook=hook,
+        unique_venvs=unique_venvs,
     )
 
     suite, errors = run_benchmarks(benchmarks, sys.executable, options)
