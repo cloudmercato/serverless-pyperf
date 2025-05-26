@@ -1,3 +1,4 @@
+import sys
 import json
 import argparse
 from serverless_pyperf import run
@@ -19,6 +20,7 @@ def main(**options):
     parser.add_argument('--timeout', default=None, type=int)
     parser.add_argument('-u', '--unique-venvs', action='store_true')
     parser.add_argument('-p', '--python', default=None)
+    parser.add_argument('-o', '--output', default=None)
 
     options = parser.parse_args()
 
@@ -42,7 +44,8 @@ def main(**options):
         print(errors)
 
     results = run.parse_results(suite, errors)
-    print(json.dumps(results))
+    fd = open(options.output, 'w') if options.output else sys.stdout
+    fd.write(json.dumps(results))
 
 
 if __name__ == '__main__':
