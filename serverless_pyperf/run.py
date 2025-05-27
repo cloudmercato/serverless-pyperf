@@ -45,9 +45,16 @@ def run(
 def parse_results(suite, errors):
     results = {}
     metadata = suite.get_metadata()
+    py_metadata = {
+        k: v for b in suite._benchmarks
+        for k, v in b.get_metadata().items()
+        if k.startswith('python_')
+    }
     for bench in suite._benchmarks:
         results[bench.get_name()] = {
             **metadata,
+            **bench.get_metadata(),
+            **py_metadata,
             'name': bench.get_name(),
 
             'loops': bench.get_loops(),
